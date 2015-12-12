@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: path.join(__dirname, 'src/app'),
@@ -39,12 +38,5 @@ module.exports = {
                 loader: "style!css!sass"
             }
         ]
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            inject: 'body',
-            title: 'Clothing Retailer'
-        })
-    ]
+    }
 };

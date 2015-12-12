@@ -1,4 +1,3 @@
-body {
-    background: black;
-    color: white;
-}
+@charset "utf-8";
+@import "core/variables";
+@import "core/normalize", "core/base";
