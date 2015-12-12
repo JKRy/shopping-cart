@@ -1,10 +1,15 @@
 {
   "name": "shopping-cart",
   "version": "1.0.0",
-  "description": "A simple shopping cart application",
-  "main": "bundle.js",
+  "description": "A responsive website for a clothing retailer",
+  "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "test": "./node_modules/mocha/bin/mocha --require test/unit/index.js --compilers js:babel-core/register test/unit/**/*",
+    "build": "./node_modules/webpack/bin/webpack.js"
+  },
+  "engines": {
+    "node": ">=4.0.0"
   },
   "repository": {
     "type": "git",
@@ -21,13 +26,27 @@
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "chai": "^3.4.1",
+    "css-loader": "^0.23.0",
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.0",
+    "html-webpack-plugin": "^1.7.0",
+    "jsdom": "^7.2.1",
     "json-loader": "^0.5.4",
+    "mocha": "^2.3.4",
     "node-sass": "^3.4.2",
     "sass-loader": "^3.1.2",
+    "sinon": "^1.17.2",
     "style-loader": "^0.13.0",
+    "webdriver": "0.0.1",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
+  },
+  "babel": {
+    "presets": [
+      "stage-0",
+      "es2015"
+    ]
   }
 }

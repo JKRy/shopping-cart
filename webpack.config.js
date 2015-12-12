@@ -1,7 +1,11 @@
+var path = require('path');
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-    entry: './main.js',
+    entry: path.join(__dirname, 'src/app'),
     output: {
-        path: './',
+        path: path.join(__dirname, 'dist'),
         filename: 'bundle.js'
     },
     devServer: {
@@ -10,11 +14,37 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /\.js$/, exclude: /node_modules/, loader: 'babel', query: {presets: ['es2015']}},
-            {test: /\.json$/, loader: 'json-loader'},
-            {test: /\.jpe?g$|\.gif$|\.png$|\.svg$/, loader: "file?name=./img/[name].[ext]"},
-            {test: /\.html/, loader: "file?name=[name].[ext]"},
-            {test: /\.scss$/, loader: "style!css!sass"}
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015', 'stage-0']
+                }
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
+            },
+            {
+                test: /\.jpe?g$|\.gif$|\.png$|\.svg$/,
+                loader: "file?name=./img/[name].[ext]"
+            },
+            {
+                test: /\.html/,
+                loader: "file?name=[name].[ext]"
+            },
+            {
+                test: /\.scss$/,
+                loader: "style!css!sass"
+            }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            inject: 'body',
+            title: 'Clothing Retailer'
+        })
+    ]
 };
