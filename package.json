@@ -19,8 +19,7 @@
   "dependencies": {
     "backbone": "^1.2.3",
     "foundation-sites": "^6.0.5",
-    "jquery": "^2.1.4",
-    "lodash": "^3.10.1"
+    "jquery": "^2.1.4"
   },
   "devDependencies": {
     "babel-core": "^6.3.17",
@@ -31,13 +30,16 @@
     "css-loader": "^0.23.0",
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.0",
+    "html-webpack-plugin": "^1.7.0",
     "jsdom": "^7.2.1",
     "json-loader": "^0.5.4",
+    "lodash": "^3.10.1",
     "mocha": "^2.3.4",
     "node-sass": "^3.4.2",
     "sass-loader": "^3.1.2",
     "sinon": "^1.17.2",
     "style-loader": "^0.13.0",
+    "underscore": "^1.8.3",
     "webdriver": "0.0.1",
     "webdriverio": "^3.3.0",
     "webpack": "^1.12.9",

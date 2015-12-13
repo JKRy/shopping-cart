@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: path.join(__dirname, 'src/app'),
@@ -39,4 +40,11 @@ module.exports = {
             }
         ]
     }
+    //plugins: [
+    //    new HtmlWebpackPlugin({
+    //        title: 'Shopping Cart',
+    //        template: 'src/templates/shopping-cart.html',
+    //        inject: '#shopping-cart'
+    //    })
+    //]
 };
