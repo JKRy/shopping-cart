@@ -1,10 +1,9 @@
 // -------
 //  Shopping Cart View
 // -------
-import Backbone from 'backbone';
 import ProductCollection from './../collections/products';
 import ShoppingCartItemView from './shopping-cart-item';
-import ShoppingCartTemplate from './../../templates/shopping-cart-item.html';
+import _ from 'underscore'
 
 'use strict';
 
@@ -16,9 +15,13 @@ module.exports = Backbone.View.extend({
     basketTotal : $('#basket'),
 
     initialize: function() {
+
         this.collection = new ProductCollection;
 
         this.defaultMessage();
+
+        //Add listener for click of add to cart
+        Backbone.on('add:to:cart', this.add, this);
 
         this.collection.on('add remove change:quantity', function(item) {
             this.updateTotal();
@@ -34,11 +37,13 @@ module.exports = Backbone.View.extend({
     },
 
     add: function(item) {
+        console.log('add called');
+        console.log('item: ', item);
         // Remove .empty class from the view
         this.$el.removeClass('empty');
 
-        // Increase the quanity by 1
-        item.quanity('increase');
+        // Increase the quantity by 1
+        item.quantity('increase');
 
         // Add the passed item model to the Cart collection
         this.collection.add(item);

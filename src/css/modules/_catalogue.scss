@@ -1,0 +1,23 @@
+// -------
+//  Catalogue
+// -------
+.catalogue-item {
+
+    .catalogue-item-image {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .catalogue-item-price {
+        float: right;
+        font-size: 26px;
+    }
+
+    .catalogue-item-name {
+        font-size: 20px;
+    }
+
+    .out-of-stock {
+        background: $color-red;
+    }
+}

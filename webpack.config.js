@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ProvidePlugin = require('./node_modules/webpack/lib/ProvidePlugin');
 
 module.exports = {
     entry: path.join(__dirname, 'src/app'),
@@ -11,6 +11,9 @@ module.exports = {
     devServer: {
         inline: true,
         port: 3333
+    },
+    resolve: {
+        modulesDirectories: ['node_modules']
     },
     module: {
         loaders: [
@@ -37,14 +40,11 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: "style!css!sass"
+            },
+            {
+                test: /\.hbs/,
+                loader: "handlebars-template-loader"
             }
         ]
     }
-    //plugins: [
-    //    new HtmlWebpackPlugin({
-    //        title: 'Shopping Cart',
-    //        template: 'src/templates/shopping-cart.html',
-    //        inject: '#shopping-cart'
-    //    })
-    //]
 };

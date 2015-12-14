@@ -4,116 +4,116 @@
         "name": "Almond Toe Court Shoes",
         "category": "Women’s Footwear",
         "color": "Patent Black",
-        "image": "assets/shoes-black.png",
+        "image": "src/static/img/shoes-black.png",
         "price": "99.00",
-        "QuantityInStock": "5"
+        "quantity": "5"
     },
     {
         "id": "2",
         "name": "Suede Shoes",
         "category": "Women’s Footwear",
         "color": "Blue",
-        "image": "assets/shoes-blue.png",
+        "image": "src/static/img/shoes-blue.png",
         "price": "42.00",
-        "QuantityInStock": "4"
+        "quantity": "4"
     },
     {
         "id": "3",
         "name": "Leather Driver Saddle Loafers",
         "category": "Men’s Footwear",
         "color": "Tan",
-        "image": "assets/shoes-brown.jpg",
+        "image": "src/static/img/shoes-brown.jpg",
         "price": "34.00",
-        "QuantityInStock": "12"
+        "quantity": "12"
     },
     {
         "id": "4",
         "name": "Flip Flops",
         "category": "Men’s Footwear",
         "color": "Red",
-        "image": "assets/jandals-red.png",
+        "image": "src/static/img/jandals-red.png",
         "price": "19.00",
-        "QuantityInStock": "6"
+        "quantity": "6"
     },
     {
         "id": "5",
         "name": "Flip Flops",
         "category": "Men’s Footwear",
         "color": "Blue",
-        "image": "assets/jandals-blue.png",
+        "image": "src/static/img/jandals-blue.png",
         "price": "19.00",
-        "QuantityInStock": "0"
+        "quantity": "0"
     },
     {
         "id": "6",
         "name": "Gold Button Cardigan",
         "category": "Women’s Casualwear",
         "color": "Black",
-        "image": "assets/cardigan-black.jpeg",
+        "image": "src/static/img/cardigan-black.jpeg",
         "price": "167.00",
-        "QuantityInStock": "6"
+        "quantity": "6"
     },
     {
         "id": "7",
         "name": "Cotton Shorts",
         "category": "Women’s Casualwear",
         "color": "Medium Red",
-        "image": "assets/shorts-pink.jpeg",
+        "image": "src/static/img/shorts-pink.jpeg",
         "price": "30.00",
-        "QuantityInStock": "5"
+        "quantity": "5"
     },
     {
         "id": "8",
         "name": "Fine Stripe Short Sleeve Shirt",
         "category": "Men’s Casualwear",
         "color": "Grey",
-        "image": "assets/shirt-grey.png",
+        "image": "src/static/img/shirt-grey.png",
         "price": "49.99",
-        "QuantityInStock": "9"
+        "quantity": "9"
     },
     {
         "id": "9",
         "name": "Fine Stripe Short Sleeve Shirt",
         "category": "Men’s Casualwear",
         "color": "Green",
-        "image": "assets/shirt-green.png",
-        "price": "49.99", //39.99
-        "QuantityInStock": "3"
+        "image": "src/static/img/shirt-green.png",
+        "price": "49.99",
+        "quantity": "3"
     },
     {
         "id": "10",
         "name": "Sharkskin Waistcoat",
         "category": "Men’s Formalwear",
         "color": "Charcoal",
-        "image": "assets/vest-black.jpg",
+        "image": "src/static/img/vest-black.jpg",
         "price": "75.00",
-        "QuantityInStock": "2"
+        "quantity": "2"
     },
     {
         "id": "11",
         "name": "Lightweight Patch Pocket Blazer",
         "category": "Men’s Formalwear",
         "color": "Deer",
-        "image": "assets/blazer-deer.png",
+        "image": "src/static/img/blazer-deer.png",
         "price": "175.50",
-        "QuantityInStock": "1"
+        "quantity": "1"
     },
     {
         "id": "12",
         "name": "Bird Print Dress",
         "category": "Women’s Formalwear",
         "color": "Black",
-        "image": "assets/dress-birds.jpg",
+        "image": "src/static/img/dress-birds.jpg",
         "price": "270.50",
-        "QuantityInStock": "10"
+        "quantity": "10"
     },
     {
         "id": "13",
         "name": "Mid Twist Cut-Out Dress",
         "category": "Women’s Formalwear",
         "color": "Pink",
-        "image": "assets/dress-pink.jpeg",
+        "image": "src/static/img/dress-pink.jpeg",
         "price": "540.00",
-        "QuantityInStock": "5"
+        "quantity": "5"
     }
 ]

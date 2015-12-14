@@ -1,35 +1,38 @@
 // -------
 //  Catalogue Item View
 // -------
-import Backbone from 'backbone';
-import $ from 'jquery';
-import CatalogueItemTemplate from './../../templates/catalogue-item.html';
+import ProductCollection from './../collections/products'
+var template = require('./../../templates/catalogue-item.hbs');
 
 'use strict';
 
 module.exports = Backbone.View.extend({
 
         tagName: 'div',
-        template: CatalogueItemTemplate,
-        //template: $('#tmp-shoppingListItem').html(),
+        className: 'catalogue-item',
 
         events: {
-            'click': 'addToCart'
+            'click .add-to-cart': 'addToCart'
         },
 
         initialize: function() {
-            console.log('catalogue item view init');
             this.render();
         },
 
         render: function() {
-            this.$el.html(_.template(this.template, this.model.toJSON()));
+            var html = template(this.model.toJSON());
+            this.$el.html(html);
 
             return this;
         },
 
         addToCart: function() {
-            App.cart.add(this.model);
+            //First check quantity of item
+            if(this.model.get('quantity') === 0) {
+                return false;
+            } else {
+                Backbone.trigger('add:to:cart', this.model);
+            }
         }
 });
 

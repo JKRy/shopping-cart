@@ -19,6 +19,14 @@ module.exports = Backbone.Model.extend({
         total:       null
     },
 
+    initialize: function() {
+      var quantity = this.get('quantity');
+
+        if(quantity > 0) {
+            this.set('inStock', true);
+        }
+    },
+
     //Set and return the total
     total: function() {
         var total = this.get('price') * this.get('quantity');
@@ -27,13 +35,9 @@ module.exports = Backbone.Model.extend({
         return total;
     },
 
-    updateQuantity: function() {
-        var quantity = this.get('quantity');
-        //increase and decrease quantity levels and when quantity is 0
-        //set inStock to 0
-        if(quantity === 0) {
-            this.set('inStock', 'false');
-        }
+    quantity : function( type ) {
+        var qty = this.get('quantity');
+        this.set('quantity', (type === 'increase' ? ++qty : --qty) );
 
     }
 

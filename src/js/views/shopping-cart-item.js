@@ -1,16 +1,15 @@
 // -------
 //  Shopping Cart Item View
 // -------
-import Backbone from 'backbone';
 import ProductCollection from './../collections/products';
-import ShoppingCartItemTemplate from './../../templates/shopping-cart-item.html';
+
+var template = require('./../../templates/shopping-cart-item.hbs');
 
 'use strict';
 
 module.exports = Backbone.View.extend({
+
     tagName: 'tr',
-    template: ShoppingCartItemTemplate,
-    //template : $('#tmp-shoppingCartItem').html(),
 
     events : {
         'click .name' : 'remove',
@@ -26,21 +25,22 @@ module.exports = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(_.template(this.template, this.model.toJSON()));
+        var html = template(this.model.toJSON());
+        this.$el.html(html);
         return this;
     },
 
     manageQuantity: function(event) {
         var type = $(event.target).data('type');
 
-        if( this.model.get('quantity') === 1 && type === 'decrease') {
+        if(this.model.get('quantity') === 1 && type === 'decrease') {
             this.remove();
         } else {
             this.model.quanity(type);
         }
     },
 
-    remove: function(){
+    remove: function() {
         this.$el.fadeOut(500, function() {
             $(this).remove();
         });

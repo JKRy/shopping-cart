@@ -12,12 +12,11 @@ import Product from '../models/product';
 module.exports = Backbone.Collection.extend({
 
     model: Product,
-    url: './src/mock/products.json',
 
     sync: function(method, model, options) {
         var params = _.extend({
             type: 'GET',
-            dataType: 'jsonp',
+            dataType: 'json',
             url: './src/mock/products.json',
             processData: false
         }, options);

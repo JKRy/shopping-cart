@@ -1,0 +1,12 @@
+// -------
+//  Footer
+// -------
+footer {
+    padding: 20px 0;
+    background: $footer-background;
+    color: $color-white;
+
+    .app-name {
+        float: right;
+    }
+}

@@ -1,0 +1,26 @@
+<div class="small-12 medium-6 large-4 column">
+    <div class="row">
+        <div class="small-12 column">
+            <img class="catalogue-item-image" src="{{ image }}" alt="{{ name }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-4 small-offset-8 column">
+            <span class="catalogue-item-price">&pound;{{ price }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 column">
+            <span class="catalogue-item-name">{{ name }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 column">
+            {{#if inStock}}
+            <button class="button add-to-cart">Add To Cart</button>
+            {{else}}
+            <button class="button out-of-stock">Out Of Stock</button>
+            {{/if}}
+        </div>
+    </div>
+</div>

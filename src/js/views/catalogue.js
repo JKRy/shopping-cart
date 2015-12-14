@@ -1,34 +1,36 @@
 // -------
 //  Catalogue View
 // -------
-import Backbone from 'backbone';
 import ProductCollection from './../collections/products';
 import CatalogueItemView from './../views/catalogue-item';
-import CatalogueTemplate from './../../templates/catalogue.html';
 
 'use strict';
 
 module.exports = Backbone.View.extend({
 
-    el: '#default-item-list',
+    el: '#catalogue',
 
     initialize: function() {
-        console.log('catalogue view init');
+        var that = this;
 
-        this.collection = new ProductCollection;
-        this.collection.fetch();
-        console.log('collection: ', this.collection); //This is empty - should be populated.
-
-        this.render();
+        this.collection = new ProductCollection();
+        this.collection.on('reset', this.render, this);
+        this.collection.fetch({
+            success: function() {
+                that.render();
+            },
+            error: function(message) {
+                console.log(message);
+            }
+        });
     },
 
     render: function() {
-        console.log('catalogue render called');
-        this.collection.each(function(item) {
-            console.log('loop'); //Doesn't run as collection is empty
-            var catalogueItemView = new CatalogueItemView({model: item});
+        var that = this;
 
-            this.$el.append(catalogueItemView.render().el);
-        }, this);
+        this.collection.each(function(item) {
+            var catalogueItemView = new CatalogueItemView({model: item});
+            that.$el.append(catalogueItemView.render().el);
+        });
     }
 });

@@ -5,11 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Clothing Retailer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/css/foundation.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 </head>
 <body>
-<header class="header">This is the header</header>
+<header id="header"></header>
+<div id="wrap">
+    <h2 id="basket-message">You have <span id="basket">0</span> items in your basket</h2>
+
+    <div class="row collapse">
+        <div class="small-12 column">
+            <div id="catalogue"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 column">
+            <table id="shopping-cart">
+                <tbody id="shopping-list"></tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="4" id="total">&pound;0.00</td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
 <script src="bundle.js"></script>
-<div id="shopping-cart"></div>
-<footer class="footer">This is the footer</footer>
+
+<footer id="footer"></footer>
 </body>
 </html>
