@@ -8,6 +8,10 @@ import _ from 'underscore'
 // set up a window object for libraries that need it
 global.document = jsdom.jsdom('<!doctype html><html><body><div id="app"></div></body></html>');
 global.window = global.document.defaultView;
+
+var $ = require('jquery')(global.window);
+Backbone.$ = $;
+
 global.navigator = {
     userAgent: 'node.js'
 };

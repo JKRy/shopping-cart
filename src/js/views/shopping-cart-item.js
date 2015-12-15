@@ -1,6 +1,7 @@
 // -------
 //  Shopping Cart Item View
 // -------
+var Backbone = require('backbone');
 import ProductCollection from './../collections/products';
 import $ from 'jquery';
 

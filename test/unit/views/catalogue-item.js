@@ -1,11 +1,16 @@
 require('../index');
+var Backbone = require('backbone');
 var expect = require('chai').expect;
 var sinon = require('sinon');
 var CatalogueItemView = require('../../../src/js/views/catalogue-item');
 
-xdescribe('Given the catalogue item view', function() {
+describe('Given the catalogue item view', function() {
     beforeEach(function () {
-        this.catalogueItemView = new CatalogueItemView();
+        this.catalogueItemView = new CatalogueItemView({
+            model: new Backbone.Model({
+                on: function() {}
+            })
+        });
     });
 
     it('Should create an instance of Backbone.View', function () {
@@ -35,6 +40,8 @@ xdescribe('Given the catalogue item view', function() {
 
                 Backbone.trigger = triggerSpy;
                 this.catalogueItemView.render = renderSpy;
+
+                this.catalogueItemView.addToCart();
             });
 
             afterEach(function() {
@@ -69,6 +76,8 @@ xdescribe('Given the catalogue item view', function() {
 
                 Backbone.trigger = triggerSpy;
                 this.catalogueItemView.render = renderSpy;
+
+                this.catalogueItemView.addToCart();
             });
 
             afterEach(function() {

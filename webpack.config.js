@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var ProvidePlugin = require('./node_modules/webpack/lib/ProvidePlugin');
 
 module.exports = {
     entry: path.join(__dirname, 'src/app'),

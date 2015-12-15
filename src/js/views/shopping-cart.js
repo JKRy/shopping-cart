@@ -21,11 +21,11 @@ module.exports = Backbone.View.extend({
 
         this.defaultMessage();
 
-        //Add listener for click events
+        //Add listeners for click events
         Backbone.on('add:to:cart', this.addToCart, this);
         Backbone.on('remove:from:cart', this.removeFromCart, this);
 
-        this.collection.on('add remove change:cartQuantity', function(item) {
+        this.collection.on('add remove change:cartQuantity', function() {
             this.updateTotal();
 
             if( this.collection.length === 0 ) {
@@ -34,7 +34,7 @@ module.exports = Backbone.View.extend({
 
             this.render();
 
-        }, this);
+        }.bind(this));
     },
 
     defaultMessage: function() {
@@ -42,15 +42,9 @@ module.exports = Backbone.View.extend({
     },
 
     addToCart: function(item) {
-        // Remove .empty class from the view
         this.$el.removeClass('empty');
-
         this.manageQuantities(item);
-
-        // Add the passed item model to the Cart collection
         this.collection.add(item);
-
-        // Render the view
         this.render();
     },
 
@@ -66,14 +60,12 @@ module.exports = Backbone.View.extend({
         var catalogueQuantity = item.get('catalogueQuantity');
         var cartQuantity = item.get('cartQuantity');
 
-        //Set the cart and catalogue quantities
         item.set('catalogueQuantity', --catalogueQuantity);
         item.set('cartQuantity', ++cartQuantity);
     },
 
-    // Update the totals in the cart
     updateTotal: function() {
-        // This is the var for the counter at the top of the page
+        // create variable for the counter at the top of the page
         var basketTotal = 0;
 
         // Loop through this collection and addup the number of items
@@ -81,7 +73,6 @@ module.exports = Backbone.View.extend({
             basketTotal += item.get('cartQuantity');
         });
 
-        // Inject these totals
         this.basketTotal.html(basketTotal);
         this.total.html(this.calculateSubtotal());
     },
@@ -100,13 +91,10 @@ module.exports = Backbone.View.extend({
         // Empty the view
         this.$el.html('');
 
-        // Loop through the collection
+        // Loop through the collection and render each model into the cart view
         this.collection.each(function(item) {
-            // Render each item model into this List view
             var newItem = new ShoppingCartItemView({model: item});
             this.$el.append(newItem.render().el);
-
-            // Pass this list views context
-        }, this);
+        }.bind(this));
     }
 });

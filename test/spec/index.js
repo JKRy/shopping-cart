@@ -1,3 +1,4 @@
+//Functional tests spec'ed out - still to complete.
 import webdriverio from 'webdriverio';
 
 describe('When I am on the shopping retailer catalogue page', function () {
