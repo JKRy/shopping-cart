@@ -1,6 +1,7 @@
 // -------
 //  Catalogue View
 // -------
+import Backbone from 'backbone'
 import ProductCollection from './../collections/products';
 import CatalogueItemView from './../views/catalogue-item';
 

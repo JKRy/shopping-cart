@@ -1,6 +1,7 @@
 // -------
 //  Shopping Cart View
 // -------
+//var Backbone = require('backbone');
 import ProductCollection from './../collections/products';
 import ShoppingCartItemView from './shopping-cart-item';
 import _ from 'underscore'

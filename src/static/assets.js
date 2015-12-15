@@ -4,10 +4,4 @@ require.context(
     /.*/
 );
 
-//require.context(
-//    '../lib',
-//    true,
-//    /.*/
-//);
-
 require('../css/main.scss');
