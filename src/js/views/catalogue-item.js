@@ -16,6 +16,10 @@ module.exports = Backbone.View.extend({
         },
 
         initialize: function() {
+            this.model.on('change', function() {
+                this.render();
+            }.bind(this));
+
             this.render();
         },
 
@@ -27,9 +31,10 @@ module.exports = Backbone.View.extend({
         },
 
         addToCart: function() {
-            //First check quantity of item
-            if(this.model.get('quantity') === 0) {
-                return false;
+            if(this.model.get('catalogueQuantity') <= 1) {
+                Backbone.trigger('add:to:cart', this.model);
+                this.model.set('inStock', false);
+                this.render();
             } else {
                 Backbone.trigger('add:to:cart', this.model);
             }

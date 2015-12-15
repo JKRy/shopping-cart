@@ -22,15 +22,5 @@ module.exports = Backbone.Collection.extend({
         }, options);
 
         return $.ajax(params);
-    },
-
-    subtotal: function() {
-        var total = 0;
-
-        this.each(function(model) {
-           total += model.total();
-        });
-
-        return total.toFixed(2);
     }
 });

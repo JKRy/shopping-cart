@@ -8,37 +8,31 @@ import Backbone from 'backbone';
 module.exports = Backbone.Model.extend({
 
     defaults: {
-        id:          null,
-        name:        null,
-        category:    null,
-        color:       null,
-        image:       null,
-        price:       null,
-        quantity:    null,
-        inStock:     false,
-        total:       null
+        id:                null,
+        name:              null,
+        category:          null,
+        color:             null,
+        image:             null,
+        price:             null,
+        cartQuantity:      null,
+        catalogueQuantity: null,
+        inStock:           false,
+        cartTotal:         null
     },
 
     initialize: function() {
-      var quantity = this.get('quantity');
+      var catalogueQuantity = this.get('catalogueQuantity');
 
-        if(quantity > 0) {
+        if(catalogueQuantity >= 1) {
             this.set('inStock', true);
         }
     },
 
     //Set and return the total
     total: function() {
-        var total = this.get('price') * this.get('quantity');
+        var total = this.get('price') * this.get('cartQuantity');
         this.set('total', total);
 
         return total;
-    },
-
-    quantity : function( type ) {
-        var qty = this.get('quantity');
-        this.set('quantity', (type === 'increase' ? ++qty : --qty) );
-
     }
-
 });

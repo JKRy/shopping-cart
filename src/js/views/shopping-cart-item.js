@@ -2,6 +2,7 @@
 //  Shopping Cart Item View
 // -------
 import ProductCollection from './../collections/products';
+import $ from 'jquery';
 
 var template = require('./../../templates/shopping-cart-item.hbs');
 
@@ -9,11 +10,11 @@ var template = require('./../../templates/shopping-cart-item.hbs');
 
 module.exports = Backbone.View.extend({
 
-    tagName: 'tr',
+    tagName: 'div',
+    className: 'shopping-cart-item',
 
     events : {
-        'click .name' : 'remove',
-        'click .quantity' : 'manageQuantity'
+        'click .quantity-decrease' : 'manageQuantity'
     },
 
     initialize: function() {
@@ -21,7 +22,7 @@ module.exports = Backbone.View.extend({
 
         this.model.on('change', function() {
             this.render();
-        }, this);
+        }.bind(this));
     },
 
     render: function() {
@@ -30,22 +31,20 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
-    manageQuantity: function(event) {
-        var type = $(event.target).data('type');
+    manageQuantity: function() {
+        var catalogueQuantity = this.model.get('catalogueQuantity');
+        var cartQuantity = this.model.get('cartQuantity');
 
-        if(this.model.get('quantity') === 1 && type === 'decrease') {
-            this.remove();
+        if(this.model.get('cartQuantity') === 1) {
+            this.model.set('catalogueQuantity', ++catalogueQuantity);
+            Backbone.trigger('remove:from:cart', this.model);
         } else {
-            this.model.quanity(type);
+            this.model.set('cartQuantity', --cartQuantity);
+            this.model.set('catalogueQuantity', ++catalogueQuantity);
+
+            if(catalogueQuantity > 0) {
+                this.model.set('inStock', true);
+            }
         }
-    },
-
-    remove: function() {
-        this.$el.fadeOut(500, function() {
-            $(this).remove();
-        });
-
-        var cartItems = new ProductCollection();
-        cartItems.remove(this.model);
     }
 });

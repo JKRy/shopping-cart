@@ -14,6 +14,7 @@ module.exports = Backbone.View.extend({
         var that = this;
 
         this.collection = new ProductCollection();
+
         this.collection.on('reset', this.render, this);
         this.collection.fetch({
             success: function() {

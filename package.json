@@ -26,7 +26,6 @@
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
-    "backbone.radio": "^1.0.2",
     "chai": "^3.4.1",
     "css-loader": "^0.23.0",
     "file-loader": "^0.8.5",

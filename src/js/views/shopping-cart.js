@@ -8,7 +8,7 @@ import _ from 'underscore'
 'use strict';
 
 module.exports = Backbone.View.extend({
-    el: '#shopping-list',
+    el: '#shopping-cart',
 
     // Some other elements to cache
     total : $('#total'),
@@ -20,36 +20,54 @@ module.exports = Backbone.View.extend({
 
         this.defaultMessage();
 
-        //Add listener for click of add to cart
-        Backbone.on('add:to:cart', this.add, this);
+        //Add listener for click events
+        Backbone.on('add:to:cart', this.addToCart, this);
+        Backbone.on('remove:from:cart', this.removeFromCart, this);
 
-        this.collection.on('add remove change:quantity', function(item) {
+        this.collection.on('add remove change:cartQuantity', function(item) {
             this.updateTotal();
 
             if( this.collection.length === 0 ) {
                 this.defaultMessage();
             }
+
+            this.render();
+
         }, this);
     },
 
     defaultMessage: function() {
-        this.$el.addClass('empty').html('<tr><td colspan="4">Cart is empty</td></tr>');
+        this.$el.addClass('empty').html('<div>Cart is Empty</div>');
     },
 
-    add: function(item) {
-        console.log('add called');
-        console.log('item: ', item);
+    addToCart: function(item) {
         // Remove .empty class from the view
         this.$el.removeClass('empty');
 
-        // Increase the quantity by 1
-        item.quantity('increase');
+        this.manageQuantities(item);
 
         // Add the passed item model to the Cart collection
         this.collection.add(item);
 
         // Render the view
         this.render();
+    },
+
+    removeFromCart: function(model) {
+        model.set({
+            'inStock': true,
+            'cartQuantity': 0
+        });
+        this.collection.remove(model);
+    },
+
+    manageQuantities: function(item) {
+        var catalogueQuantity = item.get('catalogueQuantity');
+        var cartQuantity = item.get('cartQuantity');
+
+        //Set the cart and catalogue quantities
+        item.set('catalogueQuantity', --catalogueQuantity);
+        item.set('cartQuantity', ++cartQuantity);
     },
 
     // Update the totals in the cart
@@ -59,12 +77,22 @@ module.exports = Backbone.View.extend({
 
         // Loop through this collection and addup the number of items
         this.collection.each(function(item) {
-            basketTotal += item.get('quantity');
+            basketTotal += item.get('cartQuantity');
         });
 
         // Inject these totals
         this.basketTotal.html(basketTotal);
-        this.total.html(this.collection.subtotal());
+        this.total.html(this.calculateSubtotal());
+    },
+
+    calculateSubtotal: function() {
+        var total = 0;
+
+        this.collection.each(function(model) {
+            total += model.total();
+        });
+
+        return total.toFixed(2);
     },
 
     render: function() {

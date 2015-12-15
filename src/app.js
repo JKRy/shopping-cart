@@ -1,4 +1,3 @@
-import config from './js/config'
 import Backbone from 'backbone'
 import HeaderView from './js/views/header'
 import CatalogueView from './js/views/catalogue'
@@ -7,8 +6,6 @@ import CartView from './js/views/shopping-cart'
 require('./static/assets');
 
 (() => {
-    document.write(`Hello ${config.name}`);
-
 // Generic Namespace for our App
     var App = {
         Collection : {},

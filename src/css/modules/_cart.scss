@@ -1,0 +1,41 @@
+// -------
+//  Cart
+// -------
+.shopping-cart-title {
+    border-bottom: 1px solid $color-light-grey;
+}
+
+#shopping-cart {
+    .shopping-cart-item {
+        padding: 10px 0;
+        border-bottom: 1px solid $color-light-grey;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .name {
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
+        .sub-total {
+            float: right;
+        }
+
+        .remove-from-cart {
+            margin: 0;
+        }
+    }
+}
+
+.shopping-cart-total {
+    background: $color-light-grey;
+    font-weight: bold;
+    font-size: 18px;
+
+    span {
+        float: right;
+    }
+
+}

@@ -1,4 +1,14 @@
-<td class="name">{{ name }}</td>
-<td class="quantity-total">{{ quantity }}</td>
-<td><a class="quantity" data-type="increase"><a class="quantity" data-type="decrease"></a> </a></td>
-<td class="sub-total">&pound;{{ total }}</td>
+<div class="row">
+    <div class="small-4 medium-5 column">
+        <div class="name">{{ name }}</div>
+    </div>
+    <div class="small-2 column">
+        <div class="quantity-total">{{ cartQuantity }}</div>
+    </div>
+    <div class="small-2 medium-2 column">
+        <button class="button quantity-decrease" data-type="decreaseCart">-</button>
+    </div>
+    <div class="small-4 medium-3 column">
+        <div class="sub-total">&pound;{{ total }}</div>
+    </div>
+</div>
