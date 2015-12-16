@@ -2,7 +2,6 @@
 //  Catalogue Item View
 // -------
 var Backbone = require('backbone');
-import ProductCollection from './../collections/products'
 var template = require('./../../templates/catalogue-item.hbs');
 
 'use strict';
