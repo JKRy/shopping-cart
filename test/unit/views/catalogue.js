@@ -18,4 +18,3 @@ xdescribe('Given the catalogue view', function() {
         });
     });
 });
-

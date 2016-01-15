@@ -1,7 +1,7 @@
 // -------
 //  Catalogue View
 // -------
-import Backbone from 'backbone'
+import Backbone from 'backbone';
 import ProductCollection from './../collections/products';
 import CatalogueItemView from './../views/catalogue-item';
 
@@ -16,7 +16,10 @@ module.exports = Backbone.View.extend({
 
         this.collection = new ProductCollection();
 
-        this.collection.on('reset', this.render, this);
+        /* TODO: Refactored to use Backbone.listenTo(collection, event, callback)*/
+        this.listenTo(this.collection, 'reset', this.render);
+        // this.collection.on('reset', this.render, this);
+
         this.collection.fetch({
             success: function() {
                 that.render();
@@ -28,11 +31,12 @@ module.exports = Backbone.View.extend({
     },
 
     render: function() {
-        var that = this;
+        /* TODO: refactored to use bind() */
+        // var that = this;
 
         this.collection.each(function(item) {
             var catalogueItemView = new CatalogueItemView({model: item});
-            that.$el.append(catalogueItemView.render().el);
-        });
+            this.$el.append(catalogueItemView.render().el);
+        }.bind(this));
     }
 });

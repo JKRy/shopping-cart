@@ -4,45 +4,57 @@
 //var Backbone = require('backbone');
 import ProductCollection from './../collections/products';
 import ShoppingCartItemView from './shopping-cart-item';
-import _ from 'underscore'
+import _ from 'underscore';
 
 'use strict';
 
 module.exports = Backbone.View.extend({
     el: '#shopping-cart',
 
-    // Some other elements to cache
-    total : $('#total'),
-    basketTotal : $('#basket'),
+    total: $('#total'),
+    basketTotal: $('#basket'),
 
     initialize: function() {
-
-        this.collection = new ProductCollection;
+        this.collection = new ProductCollection();
 
         this.defaultMessage();
 
-        //Add listeners for click events
+        // Add listeners for click events
         Backbone.on('add:to:cart', this.addToCart, this);
         Backbone.on('remove:from:cart', this.removeFromCart, this);
 
-        this.collection.on('add remove change:cartQuantity', function() {
+        //Normally use this approach - create a channel (Backbone.Radio)
+        //Call the comply/command function with the name of the event
+        // this.channel.comply('add:to:cart', this.addToCart, this)
+        // this.channel.command('add:to:cart');
+
+
+        /* TODO: Refactored to use Backbone.listenTo(collection, event, callback) */
+        this.listenTo(this.collection, 'add remove change:cartQuantity', function() {
             this.updateTotal();
 
-            if( this.collection.length === 0 ) {
+            if(this.collection.length === 0) {
                 this.defaultMessage();
             }
-
             this.render();
-
         }.bind(this));
+
+        // this.collection.on('add remove change:cartQuantity', function() {
+        //     this.updateTotal();
+        //     if(this.collection.length === 0) {
+        //         this.defaultMessage();
+        //     }
+        //     this.render();
+        // }.bind(this));
     },
 
     defaultMessage: function() {
-        this.$el.addClass('empty').html('<div>Cart is Empty</div>');
+        // this.$el.addClass('empty').html('<div>Cart is Empty</div>');
+        this.$el.html('<div>Cart is Empty</div>');
     },
 
     addToCart: function(item) {
-        this.$el.removeClass('empty');
+        // this.$el.removeClass('empty');
         this.manageQuantities(item);
         this.collection.add(item);
         this.render();
@@ -54,6 +66,9 @@ module.exports = Backbone.View.extend({
             'cartQuantity': 0
         });
         this.collection.remove(model);
+
+        /* TODO Function below was added */
+        this.defaultMessage();
     },
 
     manageQuantities: function(item) {
